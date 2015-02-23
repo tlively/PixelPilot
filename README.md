@@ -26,8 +26,6 @@ $ java -jar PixelPilot.jar
 #### Play
 goal: pilot the ship around the screen, shooting asteroids. Try to survive as long as possible and get a high score!
 
-###### Controls
-
 | Key | Action |
 | :-- | :----- |
 | w   | accelerate forward |
