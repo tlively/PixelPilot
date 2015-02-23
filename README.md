@@ -1,8 +1,8 @@
-<h3>About</h3>
+<h4>About</h4>
 PixelPilot is a small Asteroids-esque game written with standard Java libraries
 for educational purposes.
 
-<h3>Compiling</h3>
+<h4>Compiling</h4>
 in PixelPilot directory:
 
 ```
@@ -11,7 +11,7 @@ $ javac -d bin/ src/PixelPilot.java
 
 this will place all the generated class files in PixelPilot/bin
 
-<h3>Create a JAR<\h3>
+<h4>Create a JAR</h4>
 In PixelPilot/bin directory
 
 ```
@@ -24,7 +24,7 @@ this will create a Java Archive, PixelPilot.jar, which can be run with
 $ java -jar PixelPilot.jar
 ```
 
-<h3>Play<\h3>
+<h4>Play</h4>
 goal: pilot the ship around the screen, shooting asteroids. Try to survive as long as possible and get a high score!
 
 controls:
