@@ -1,8 +1,8 @@
-<h3>About<\h3>
+<h3>About</h3>
 PixelPilot is a small Asteroids-esque game written with standard Java libraries
 for educational purposes.
 
-<h3>Compiling<\h3>
+<h3>Compiling</h3>
 in PixelPilot directory:
 
 ```
