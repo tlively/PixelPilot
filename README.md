@@ -1,6 +1,5 @@
 #### About
-PixelPilot is a small Asteroids-esque game written with standard Java libraries
-for educational purposes.
+PixelPilot is a small Asteroids-esque game written with standard Java libraries for educational purposes.
 
 #### Compiling
 in PixelPilot directory:
@@ -28,17 +27,18 @@ $ java -jar PixelPilot.jar
 goal: pilot the ship around the screen, shooting asteroids. Try to survive as long as possible and get a high score!
 
 ###### Controls
-key | action
---|-------
-w | accelerate forward
-a | accelerate backward
-s | accelerate left
-d | accelerate right
-j | rotate counterclockwise
-k | rotate clockwise
-space | fire
-esc | pause/unpause
-enter | start a new game from the game over screen
+
+| Key | Action |
+| :-- | :----- |
+| w   | accelerate forward |
+| a   | accelerate backward |
+| s   | accelerate left |
+| d   | accelerate right |
+| j   | rotate counterclockwise |
+| k   | rotate clockwise |
+| space | fire |
+| esc   | pause/unpause |
+| enter | start a new game from the game over screen |
 
 You start with 3 lives, which you can lose by running into an asteroid
 or leaving the window. You can gain lives by reaching 200, 400, 800, etc.
