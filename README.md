@@ -92,6 +92,46 @@ Even after all this work, the window will still not appear. There is one last th
 
 At this point in the tutorial, you should be able to create a visible window by instantiating a *JFrame* and using its methods to configure it properly. You should also be able to add a custom *JComponent* to the window, but it won't be able to do anything yet.
 
-
 ## Part 2: The Game Loop
-Great, now that we've got a window to look at we need to think about how we're going to make a game with it. The most fundamental part of any game is the **game loop**. The game loop has three parts: Update the game logic, clear the screen, and render (draw) the game objects to the screen.
+Great, now that we've got a window to look at we need to think about how we're going to make a game with it. The most fundamental part of any game is the **game loop**. The game loop has three parts: Update the game logic, clear the screen, and render (draw) the game objects to the screen. The reason we clear the screen before rendering each frame is that when objects move on screen we want to remove them from the old location and redraw them in the new location. It turns out that it is easier and often more efficient to clear and redraw the whole screen rather than to try to clear just the part that needs updating.
+
+With all that in mind, here is the most basic game loop possible.
+
+    while (!game_over) {
+        update();
+        clear();
+        draw();
+    }
+
+While this basic game loop would work, it has some some problems. First of all, we have no control over how fast this game loop runs. On a faster machine, the game itself would run faster. Clearly that is undesirable behavior. Another problem is that as long as the game is running, the processor will be working at 100% without stopping. This is very unusual for processors, and it will make your computer very very hot and make your computer's fan freak out. To prevent this from happening, we will introduce the concepts of **sleeping** and **framerate**.
+
+Framerate is the number of frames a game renders per second. Framerates can be as low as 30 frames/second and as high as 120 frames/second. Technically they could be higher, but most monitors have a built in framerate of 60 or 120 frames per second, so telling the computer to draw more won't make the picture look any better. But how do we control the number of frames the computer draws each second?
+
+Clearly we need some sort of timing mechanism to control when the game updates and draws itself. Consider this more sophisticated game loop.
+
+    long startTime = System.currentTimeMillis();
+    while (!game_over) {
+        double dt = System.currentTimeMillis() - startTime;
+        startTime += dt;
+        update(dt / 1000);
+        clear();
+        draw();
+        long sleepTime = (long) (1000.0 / TARGET_FRAMERATE - (System.currentTimeMillis() - startTime));
+        try {
+            Thread.sleep(sleepTime);
+        } catch (InterruptedException e) {}
+    }
+
+At each iteration, this game loop calculates *dt*, the milliseconds since the last game update, and passes it to *update*. The game logic code will use this value to determine how much game state has changed since the last update. For example, *dt* is important in figuring out how far an object has moved, given its velocity, since the last frame.
+
+Once the game loop has finished updating and drawing the scene, it calculates how long it needs to sleep before waking up to draw the next frame. `1000.0 / TARGET_FRAMERATE` is the number of milliseconds we would like to have between the start of one frame and the next, so we let the process sleep for this long, minus the time it took to do the update, clearing, and drawing. This will make the process wake up at just the right time to render the next frame.
+
+This is not the most sophisticated game loop scheme, but it is certainly sufficient for most 2D games. If you look at the *main* method at the bottom of the PixelPilot source, you should be able to recognize this game loop structure mixed in with some high level game logic. One thing to note, however is that in PixelPilot the *clear* functionality has been rolled into the *draw* functionality which is called with `INSTANCE.repaint()`.
+
+At this point in the tutorial you should be able to create a window and implement a good game loop. There's still nothing to look at in the window, but all that's left to do is learn how to draw to the screen. After that you will have all the skills you need to make your own games.
+
+## Part 3: Rendering
+
+This part is under construction. Come back soon!
+        
+		
